@@ -1,7 +1,7 @@
 import { Express, Request } from 'express';
 import { createProxyMiddleware, RequestHandler } from 'http-proxy-middleware';
 import { config } from '../config';
-import { Log } from '../models/log';
+import Log from '../models/log';
 import { AppError } from './errorHandler';
 
 interface ProxyOptions {
@@ -27,19 +27,16 @@ const proxyMiddleware: RequestHandler = createProxyMiddleware({
     '^/api/proxy': '', // Remove /api/proxy prefix
   },
   onProxyReq: async (proxyReq, req: Request, res) => {
-    // Set request timestamp
+    // Set request timestamp (if needed)
     req.timestamp = Date.now();
-
     if (!proxyOptions.enabled) {
       throw new AppError(403, 'Proxy is currently disabled');
     }
-
     const path = req.path.replace('/api/proxy', '');
     if (!proxyOptions.whitelist.includes(path)) {
       throw new AppError(403, 'Endpoint not whitelisted');
     }
-
-    // Log the request
+    // Intercept and log each proxied request (method, URL, timestamp) and store in MongoDB
     try {
       await Log.create({
         method: req.method,
