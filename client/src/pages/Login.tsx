@@ -81,30 +81,30 @@ export default function Login() {
         transition={{ duration: 0.5 }}
         className="relative z-10 w-full max-w-md"
       >
-        <Card className="backdrop-blur-md bg-white/10 border-white/20 shadow-2xl">
-          <CardHeader className="space-y-1">
+        <Card className="backdrop-blur-md bg-white/90 border-white/20 shadow-2xl rounded-lg">
+          <CardHeader className="space-y-1 mb-6">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <CardTitle className="text-3xl font-bold text-white text-center">
-                Welcome Back
+              <CardTitle className="text-3xl font-bold text-black text-center mb-2">
+              Enter your credentials to access the dashboard
               </CardTitle>
             </motion.div>
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <CardDescription className="text-white/80 text-center">
+              <CardDescription className="text-gray-700 text-center text-base">
                 Enter your credentials to access the dashboard
               </CardDescription>
-            </motion.div>
+            </motion.div> */}
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -114,17 +114,17 @@ export default function Login() {
                     control={form.control}
                     name="email"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Email</FormLabel>
+                      <FormItem className="mb-4">
+                        <FormLabel className="text-black font-medium mb-2 block">Email</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="Enter your email" 
                             type="email" 
                             {...field}
-                            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-white/50"
+                            className="h-12 px-4 py-3 bg-white border-gray-200 text-black placeholder:text-gray-500 focus:border-blue-500 focus:ring-2 transition-all rounded-lg shadow-sm"
                           />
                         </FormControl>
-                        <FormMessage className="text-red-300" />
+                        <FormMessage className="text-red-500 mt-2 text-sm" />
                       </FormItem>
                     )}
                   />
@@ -139,17 +139,17 @@ export default function Login() {
                     control={form.control}
                     name="password"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-white">Password</FormLabel>
+                      <FormItem className="mb-4">
+                        <FormLabel className="text-black font-medium mb-2 block">Password</FormLabel>
                         <FormControl>
                           <Input 
                             placeholder="Enter your password" 
                             type="password" 
                             {...field}
-                            className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-white/50"
+                            className="h-12 px-4 py-3 bg-white border-gray-200 text-black placeholder:text-gray-500 focus:border-blue-500 focus:ring-2 transition-all rounded-lg shadow-sm"
                           />
                         </FormControl>
-                        <FormMessage className="text-red-300" />
+                        <FormMessage className="text-red-500 mt-2 text-sm" />
                       </FormItem>
                     )}
                   />
@@ -160,9 +160,10 @@ export default function Login() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
+                    className="mb-4"
                   >
-                    <Alert variant="destructive" className="bg-red-500/20 border-red-500/50">
-                      <AlertDescription className="text-red-200">{error}</AlertDescription>
+                    <Alert variant="destructive" className="bg-red-50 border-red-200">
+                      <AlertDescription className="text-red-600">{error}</AlertDescription>
                     </Alert>
                   </motion.div>
                 )}
@@ -174,7 +175,7 @@ export default function Login() {
                 >
                   <Button 
                     type="submit" 
-                    className="w-full bg-white text-purple-600 hover:bg-white/90 hover:text-purple-700 transition-colors duration-200 font-semibold"
+                    className="w-full h-14 bg-indigo-600 text-black hover:bg-indigo-700 transition-all duration-200 font-semibold rounded-lg shadow-sm text-base"
                   >
                     Sign In
                   </Button>

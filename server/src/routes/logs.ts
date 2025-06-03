@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { Log } from '../models/log';
+import Log from '../models/log';
 import { protect, restrictTo } from '../middleware/auth';
 import { AppError } from '../middleware/errorHandler';
 
@@ -125,4 +125,4 @@ router.delete('/', protect, restrictTo('admin'), async (req, res, next) => {
   }
 });
 
-export const logsRouter = router; 
+export const logsRouter = router;

@@ -44,7 +44,7 @@ const proxyMiddleware: RequestHandler = createProxyMiddleware({
         timestamp: new Date(),
         ip: req.ip,
         userAgent: req.get('user-agent'),
-        status: 'pending',
+        statusCode: 'pending',
       });
     } catch (error) {
       console.error('Failed to log request:', error);
@@ -59,7 +59,7 @@ const proxyMiddleware: RequestHandler = createProxyMiddleware({
           timestamp: { $gte: new Date(Date.now() - 5000) }, // Find log from last 5 seconds
         },
         {
-          status: proxyRes.statusCode,
+          statusCode: proxyRes.statusCode,
           responseTime: req.timestamp ? Date.now() - req.timestamp : undefined,
         }
       );

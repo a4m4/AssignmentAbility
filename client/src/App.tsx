@@ -41,22 +41,22 @@ export default function App() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Layout>
                 <Dashboard />
               </Layout>
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         
         <Route
           path="/logs"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Layout>
                 <Logs />
               </Layout>
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         
